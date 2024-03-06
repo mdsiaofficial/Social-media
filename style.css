@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.icon_font {
+    font-family: "Grenze Gotisch", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2.1rem;
+    color: rgb(216, 220, 223);
+  }
+
+/* w-[255px] */
+.navbar{
+    @apply h-screen w-fit transition-all duration-300
+}
+
+.navbar nav{
+    @apply border-e border-gray-900 w-full py-7 px-2 lg:px-7
+    transition-all duration-300 
+}
+
+.navbar nav p{
+    @apply hidden lg:block
+}
+
+
+
+.nav-item{
+    @apply  cursor-pointer flex  hover:bg-gray-900 transition-all 
+    duration-200 rounded gap-4 mb-5 px-3 py-2 items-center justify-start 
+    text-lg text-zinc-400 hover:text-white
+}
+
+.activePage{
+    @apply lg:text-white md:font-bold bg-gray-900
+
+}
