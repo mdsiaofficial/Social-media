@@ -1,8 +1,14 @@
 import { navbar } from "./component/navbar.js";
+import { createPeople,addSugPeople } from "./component/people.js";
 
 
-const mainBody = document.querySelector("#root")
+const root = document.querySelector("#root");
+navbar(root)
+createPeople()
 
 
 
-navbar(mainBody)
+addSugPeople()
+addSugPeople()
+addSugPeople()
+addSugPeople()
