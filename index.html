@@ -15,9 +15,19 @@
         
     <!-- nav div -->
     <main id="main" class="main_w h-screen px-3 flex gap-3 justify-between overflow-y-auto scroll-smooth">
-        <section id="mainBody" class="w-full md:block md:w-[480px] py-6 md:py-8">
+        <section id="mainBody" class="w-full md:block md:w-[480px] py-6 md:py-8 relative">
             <div id="mainPost" class="w-full md:w-[480px]"></div>
+            <div id="savePostArea" class="bg-black absolute hidden inset-0 w-full h-screen">
+                <div class="flex items-center justify-center my-7">
+                    <h1 class="font-semibold text-2xl">Saved post</h1>
+                </div>
+                <section class="savePostAppend"></section>
+            </div>
         </section>
+
+        
+
+
     </main>
 
 

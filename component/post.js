@@ -29,7 +29,7 @@ function createPost(idImg,idName,idLoc,mainPost,title){
                             <img id="like" class="h-6 btn" src="./icons/like.svg" alt="">
                             <img class="h-6 btn" src="./icons/chat.svg" alt="">
                         </div>
-                        <img class="h-6 btn"  src="./icons/save.svg" alt="">
+                        <img id="savePostBtn" class="h-6 btn"  src="./icons/save.svg" alt="">
                     </div>
 
                     <p class="opacity-90 text-md mt-3 hover:opacity-95"><span id="countlike">0</span> likes</p>

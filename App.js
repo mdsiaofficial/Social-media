@@ -25,6 +25,9 @@ const suggerId = document.querySelector("#suggerId")
 const createPostFull = document.querySelector("#createPostFull")
 const postClose = document.querySelector("#postClose")
 const postCaption = document.querySelector("#createPostFull textarea");
+const SavePost = document.querySelector("#SavePost");
+
+
 
 
 
@@ -66,7 +69,7 @@ postData.forEach((data,index)=>{
 
 let rahul = 0; // Define rahul variable outside
 
-function SharePostUpdate(IMG,rahul) {
+function SharePostUpdate(IMG,rahul,Alldata=null) {
     const newImg = document.querySelector("#uploadImg");
     const input = document.querySelector("#inputfile");
     const newPostP = document.querySelector("#newPostP");
@@ -79,10 +82,12 @@ function SharePostUpdate(IMG,rahul) {
     });
 
     newPostP.addEventListener("click", () => {
-        if (rahul === 1) {
+        if (rahul === 1 && !Alldata) {
             if (IMG && IMG !== "./images/createPost.png") { 
                 const postCaption = document.querySelector("#createPostFull textarea").value;
                 createPost(profileData.img, profileData.id, "Dinajpur", IMG, postCaption);
+                postData.push(Alldata);
+
                 document.querySelector("#createPostFull textarea").value = "";
                 uploadImg.src = "./images/createPost.png";
                 profileHide(createPostFull);
@@ -96,7 +101,7 @@ function SharePostUpdate(IMG,rahul) {
                 createPost(profileData.img, profileData.id, "Dinajpur", IMG, postCaption);
 
 
-                let Alldata = {
+                let newdata = {
                     img: profileData.img,
                     id: profileData.id,
                     loc: "Bangladesh",
@@ -104,7 +109,7 @@ function SharePostUpdate(IMG,rahul) {
                     caption: postCaption
                 };
 
-                postData.push(Alldata)
+                postData.push(newdata)
 
                 document.querySelector("#createPostFull textarea").value = "";
                 uploadImg.src = "./images/createPost.png";
@@ -157,15 +162,12 @@ const createID = document.querySelector(".createID")
 const uploadImg = document.querySelector("#uploadImg")
 const storyImg = document.querySelector("#storyImg")
 const mainPost = document.querySelector("#mainPost");
+const savePostArea = document.querySelector("#savePostArea");
+const savePostAppend = document.querySelector(".savePostAppend")
 
 
-
-// Select elements once outside the event listener
-let postShare = document.querySelectorAll("#sharePost");
-let like = document.querySelectorAll("#like");
-let countlike = document.querySelectorAll("#countlike");
 // Function to attach event listeners for like buttons
-function attachLikeEventListeners() {
+function attachLikeEventListeners(like, countlike) {
     like.forEach((item, index) => {
         item.addEventListener("click", () => {
             if (item.getAttribute("src") === "./icons/like.svg") {
@@ -180,62 +182,91 @@ function attachLikeEventListeners() {
 }
 
 
-function attachNewPostEventListeners(){
-    postShare.forEach((item, index) => {
-        item.addEventListener("click", () => {
-            // Ensure that the logic runs only once
-            if (!item.clicked) {
-                // Set the clicked flag to true to prevent multiple executions
-                item.clicked = true;
-                rahul = 1;
-                let targetIndex = postShare.length - index - 1;
-                let Alldata = {
-                    img: profileData.img,
-                    id: profileData.id,
-                    loc: postData[targetIndex].loc,
-                    postImg: postData[targetIndex].postImg,
-                    caption: postData[targetIndex].caption
-                };
-    
-                document.querySelector("#createPostFull textarea").value = postData[targetIndex].caption;
-                uploadImg.src = postData[targetIndex].postImg;
-                profileShow(createPostFull);
-                SharePostUpdate(postData[targetIndex].postImg, rahul);
-                rahul = 0;
-                postData.push(Alldata);
-            }
+
+function attachSAVEDEventListeners(saved) {
+    saved.forEach((item, index) => {
+        item.addEventListener("click", () => {  
+            item.setAttribute("src", "./icons/saved.svg");
+            savePostAppend.prepend(item.parentNode.parentNode)
+          
         });
     });
-    
+}
+
+
+
+
+
+
+// Function to attach event listeners for postShare items
+function handlePostShareClick(item, index, postShare, profileData, postData) {
+    item.addEventListener("click", () => {
+        // Ensure that the logic runs only once
+        if (!item.clicked) {
+            // Set the clicked flag to true to prevent multiple executions
+            item.clicked = true;
+            let rahul = 1;
+            let targetIndex = postShare.length - index - 1;
+            let Alldata = {
+                img: profileData.img,
+                id: profileData.id,
+                loc: postData[targetIndex].loc,
+                postImg: postData[targetIndex].postImg,
+                caption: postData[targetIndex].caption
+            };
+
+            document.querySelector("#createPostFull textarea").value = postData[targetIndex].caption;
+            uploadImg.src = postData[targetIndex].postImg;
+            profileShow(createPostFull);
+            SharePostUpdate(postData[targetIndex].postImg, rahul, Alldata);
+        }
+    });
 }
 
 // Attach event listener for mainPost
 mainPost.addEventListener("click", () => {
-    postShare = document.querySelectorAll("#sharePost");
-    like = document.querySelectorAll("#like");
-    countlike = document.querySelectorAll("#countlike");
-    
+    let postShare = document.querySelectorAll("#sharePost");
+    let like = document.querySelectorAll("#like");
+    let countlike = document.querySelectorAll("#countlike");
+    let savePostBtn = document.querySelectorAll("#savePostBtn")
+
     // Reset the clicked flag for all postShare items
     postShare.forEach(item => {
         item.clicked = false;
     });
-    
+
     // Reset the clicked flag for all like buttons
     like.forEach(item => {
         item.clicked = false;
     });
-    
+
+    savePostBtn.forEach(item =>{
+        item.clicked = false;
+    })
+
     // Reattach event listeners for like buttons
-    attachLikeEventListeners();
-    attachNewPostEventListeners();
+    attachLikeEventListeners(like, countlike);
+    attachSAVEDEventListeners(savePostBtn)
+
+    // Attach event listeners for postShare items
+    postShare.forEach((item, index) => {
+        handlePostShareClick(item, index, postShare, profileData, postData);
+    });
 });
 
 // Attach event listeners for like buttons initially
-attachLikeEventListeners();
-attachNewPostEventListeners();
+let like = document.querySelectorAll("#like");
+let countlike = document.querySelectorAll("#countlike");
+attachLikeEventListeners(like, countlike);
 
-// Attach event listeners for postShare items
+let savePostBtn = document.querySelectorAll("#savePostBtn")
+attachSAVEDEventListeners(savePostBtn)
 
+// Attach event listeners for postShare items initially
+let postShare = document.querySelectorAll("#sharePost");
+postShare.forEach((item, index) => {
+    handlePostShareClick(item, index, postShare, profileData, postData);
+});
 
 
 
@@ -246,6 +277,8 @@ storyImg.addEventListener("change", () => {
         storyIMGappend(IMG);
     }
 });
+
+
 
 
 // slider function call start
@@ -411,8 +444,6 @@ function profileHide(Parent) {
 
 
 
-
-
 navMenu.forEach((item)=>{
     item.addEventListener("click",()=>{
         if (!item.classList.contains("createID")){
@@ -424,20 +455,33 @@ navMenu.forEach((item)=>{
 
 
         if(item.classList.contains("homeID")){
-            peopleArea.classList.add("hidden")
-            mainBody.classList.remove("hidden")
+            peopleRemove()
+            saveRemove()
+            homeActive()
             item.classList.add("activePage")
         }
 
 
         else if(item.classList.contains("peopleID")){
-            mainBody.classList.add("hidden")
-            peopleArea.classList.remove("hidden")
+            peopleActive()
             item.classList.add("activePage")
         }
 
         else if (item.classList.contains("createID")){
             createID.addEventListener("click", function (){profileShow(createPostFull)});
+            peopleRemove()
+            saveRemove()
+            homeActive()
+
+        }
+
+
+        else if(item.classList.contains("saveID")){
+            item.classList.add("activePage")
+            saveActive()
+            peopleRemove()
+           
+            
         }
 
 
@@ -447,8 +491,42 @@ navMenu.forEach((item)=>{
 
 
 
+function homeActive(){
+    mainBody.classList.remove("hidden")
+    mainPost.classList.remove("md:hidden")
+    mainPost.classList.remove("hidden")
+
+}
+
+function homeRemove(){
+    mainBody.classList.add("hidden")
+    mainPost.classList.add("md:hidden")
+    mainPost.classList.add("hidden")
+
+}
 
 
 
+function peopleActive(){
+    mainBody.classList.add("hidden")
+    peopleArea.classList.remove("hidden")
+}
 
 
+function peopleRemove(){
+    mainBody.classList.remove("hidden")
+    peopleArea.classList.add("hidden")
+}
+
+
+
+function saveActive(){
+    savePostArea.classList.remove("hidden")
+    mainPost.classList.add("hidden")
+}
+
+
+function saveRemove(){
+    savePostArea.classList.add("hidden")
+    mainPost.classList.remove("hidden")
+}
