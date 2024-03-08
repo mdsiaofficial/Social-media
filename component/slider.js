@@ -35,4 +35,7 @@ function createSlider(){
 }
 
 
-export{createSlider}
+
+export{
+    createSlider
+}

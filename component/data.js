@@ -2,7 +2,7 @@
 let profileData = {
         id : "rahulroynipon",
         name: "Rahul Roy Nipon",
-        img: "./sugg/rahul.png"
+        img: "./images/nipon.png"
     }
 
 
