@@ -2,6 +2,7 @@ function createSlider(){
     const Parent = document.querySelector("#mainBody")
     const Section = document.createElement("section")
     Section.setAttribute("class","mr-3 h-[220px] rounded-lg relative")
+    Section.setAttribute("id","topside")
     Section.innerHTML = 
     `
                 <div class="flex gap-2 overflow-hidden absolute inset-0 sliderLayout duration-200 transition-all">

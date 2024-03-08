@@ -5,10 +5,12 @@ import { createSlider } from "./component/slider.js";
 import { createPost } from "./component/post.js";
 import { SuggerDisplay } from "./component/modalSuggDisplay.js";
 import { profileDisplay } from "./component/modalProDisplay.js";
+import { cratePostDisplay } from "./component/createPostModal.js";
 
 
 SuggerDisplay.Create()
 profileDisplay.Create()
+cratePostDisplay.Create()
 
 const root = document.querySelector("#root");
 const fullProfile = document.querySelector("#fullProfile");
@@ -17,6 +19,13 @@ const fullSugg = document.querySelector("#fullSugg");
 const suggClose = document.querySelector("#suggClose");
 const suggerImg = document.querySelector("#suggerImg")
 const suggerId = document.querySelector("#suggerId")
+const createPostFull = document.querySelector("#createPostFull")
+const postClose = document.querySelector("#postClose")
+const postCaption = document.querySelector("#createPostFull textarea");
+
+
+
+
 
 
 
@@ -41,6 +50,41 @@ function profileUpdate() {
 profileUpdate()
 
 
+
+function PostUpdate() {
+    const newImg = document.querySelector("#uploadImg");
+    const input = document.querySelector("#inputfile");
+    const newPostP = document.querySelector("#newPostP")
+    let IMG;
+    input.addEventListener("change", () => {
+        if (input.files.length > 0) {
+            IMG = URL.createObjectURL(input.files[0]);
+            newImg.src = IMG;
+            
+            
+        }
+    });
+
+    console.log(newPostP)
+
+    newPostP.addEventListener("click", () => {
+        if (IMG !== "./images/createPost.png") { 
+            const postCaption = document.querySelector("#createPostFull textarea");
+            createPost(profileData.img, profileData.id, "Dinajpur", IMG, postCaption.value);
+            document.querySelector("#createPostFull textarea").value = ""
+            uploadImg.src = "./images/createPost.png"
+            profileHide(createPostFull);
+        }
+    });
+    
+}
+
+PostUpdate()
+
+
+
+
+
 navbar(root)
 createSlider()
 createPeople(profileLoc.id, profileLoc.name, profileLoc.img);
@@ -61,6 +105,10 @@ const suggItem = document.querySelectorAll(".suggItem");
 const Followed = document.querySelectorAll(".Followed")
 const peopleArea = document.querySelector("#peopleArea")
 const mainBody = document.querySelector("#mainBody")
+const createID = document.querySelector(".createID")
+const uploadImg = document.querySelector("#uploadImg")
+
+
 
 
 
@@ -81,6 +129,22 @@ left.addEventListener("click", leftNav);
 pro.addEventListener("click", function (){profileShow(fullProfile)});
 proClose.addEventListener("click", function(){profileHide(fullProfile)});
 fullProfile.addEventListener("click", function(){profileHide(fullProfile)});
+
+
+
+
+postClose.addEventListener("click", function(){
+    document.querySelector("#createPostFull textarea").value = ""
+    uploadImg.src = "./images/createPost.png"
+    profileHide(createPostFull);
+
+
+});
+createPostFull.addEventListener("click", function(){
+    document.querySelector("#createPostFull textarea").value = ""
+    uploadImg.src = "./images/createPost.png"
+    profileHide(createPostFull)
+});
 
 
 
@@ -220,10 +284,12 @@ function profileHide(Parent) {
 
 navMenu.forEach((item)=>{
     item.addEventListener("click",()=>{
-        navMenu.forEach(item =>{
-            item.classList.remove("activePage")
-        })
-
+        if (!item.classList.contains("createID")){
+            navMenu.forEach(item =>{
+                item.classList.remove("activePage")
+            })
+    
+        }
 
 
         if(item.classList.contains("homeID")){
@@ -239,7 +305,19 @@ navMenu.forEach((item)=>{
             item.classList.add("activePage")
         }
 
+        else if (item.classList.contains("createID")){
+            createID.addEventListener("click", function (){profileShow(createPostFull)});
+        }
+
 
         
     })
 })
+
+
+
+
+
+
+
+
