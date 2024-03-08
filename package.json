@@ -4,7 +4,8 @@
   "description": "",
   "main": "JavaScript.js",
   "scripts": {
-    "start": "vite",
+    "dev": "vite",
+    
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
