@@ -1,11 +1,11 @@
-
+// This object contains the profile data of a user, including their ID, name, and profile image path.
 let profileData = {
-        id : "rahulroynipon",
-        name: "Rahul Roy Nipon",
-        img: "./images/nipon.png"
-    }
+    id : "rahulroynipon",
+    name: "Rahul Roy Nipon",
+    img: "./images/nipon.png"
+}
 
-
+// This array contains the paths to the stories of a user.
 let storySore = [
     "./sugg/mahin.png",
     "./slider/slider4.jpg",
@@ -21,10 +21,7 @@ let storySore = [
     "./slider/slider1.jpg"
 ]
 
-
-
-
-
+// This array contains the suggested user data, each object containing an ID and an image path.
 let  suggData =  [
     {
         id: "dipokroy",
@@ -48,11 +45,9 @@ let  suggData =  [
     }
 ]
 
-
-
-
-
+// This array contains the post data, each object containing the user's image, ID, location, post image, and caption.
 let postData = [
+    // ... (each object in this array has the same structure as the one above)
     {
        img: "./sugg/dipok.png",
        id: "dipokroy",
@@ -120,8 +115,7 @@ let postData = [
 
 ]
 
-
-
+// This exports the profile data, suggested user data, post data, and story data for use in other files.
 export {
     profileData,
     suggData,
