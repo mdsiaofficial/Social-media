@@ -6,6 +6,22 @@ let profileData = {
     }
 
 
+let storySore = [
+    "./sugg/mahin.png",
+    "./slider/slider4.jpg",
+    "./slider/slider3.jpg",
+    "./slider/slider2.jpg",
+    "./sugg/jugol.png",
+    "./sugg/dipok.png",
+    "./slider/slider4.jpg",
+    "./sugg/rahul.png",
+    "./sugg/nirmol.png",
+    "./slider/slider3.jpg",
+    "./slider/slider2.jpg",
+    "./slider/slider1.jpg"
+]
+
+
 
 
 
@@ -86,13 +102,21 @@ let postData = [
        postImg: "./sugg/rahul.png",
        caption: "Puspa jukega heni sala"
     },
-    {
-       img: "./sugg/gp.jpeg",
-       id: "grameenphone",
-       loc: "Dinajpur, Rangpur",
-       postImg: "./sugg/people.jpeg",
-       caption: "মা-মেয়ের মুখে এমন ভুবন ভোলানো হাসি কেন জানেন"
-    }
+    
+     {
+        img: "/images/nipon.png",
+        id: "rahulroynipon",
+        loc: "Dinajpur, Rangpur",
+        postImg: "./sugg/project.png",
+        caption: "my small project. hope you like it."
+     },
+     {
+        img: "./sugg/gp.jpeg",
+        id: "grameenphone",
+        loc: "Dinajpur, Rangpur",
+        postImg: "./sugg/people.jpeg",
+        caption: "মা-মেয়ের মুখে এমন ভুবন ভোলানো হাসি কেন জানেন"
+     }
 
 ]
 
@@ -101,5 +125,6 @@ let postData = [
 export {
     profileData,
     suggData,
-    postData
+    postData,
+    storySore
 }

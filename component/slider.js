@@ -5,22 +5,7 @@ function createSlider(){
     Section.setAttribute("id","topside")
     Section.innerHTML = 
     `
-                <div class="flex gap-2 overflow-hidden absolute inset-0 sliderLayout duration-200 transition-all">
-                    <img class="slider-image" src="./slider/slider1.jpg" alt="">
-                    <img class="slider-image" src="./slider/slider2.jpg" alt="">
-                    <img class="slider-image" src="./slider/slider3.jpg" alt="">
-                    <img class="slider-image" src="./sugg/nirmol.png" alt="">
-                    <img class="slider-image" src="./sugg/rahul.png" alt="">
-                    <img class="slider-image" src="./slider/slider4.jpg" alt="">
-
-                    <img class="slider-image" src="./sugg/dipok.png" alt="">
-                    <img class="slider-image" src="./sugg/jugol.png" alt="">
-                    
-
-                    <img class="slider-image" src="./slider/slider2.jpg" alt="">
-                    <img class="slider-image" src="./slider/slider3.jpg" alt="">
-                    <img class="slider-image" src="./slider/slider4.jpg" alt="">
-                    <img class="slider-image" src="./sugg/mahin.png" alt="">
+                <div id="sliderIMgParent" class="flex gap-2 overflow-hidden absolute inset-0 sliderLayout duration-200 transition-all">
                 </div>
 
                 <div>
@@ -37,6 +22,21 @@ function createSlider(){
 
 
 
+
+function storyIMGappend(path) {
+    const Parent = document.querySelector("#sliderIMgParent");
+
+    const IMG = document.createElement("img");
+    IMG.setAttribute("class", "slider-image");
+    IMG.src = path;
+
+    Parent.prepend(IMG);
+}
+
+
+
+
 export{
-    createSlider
+    createSlider,
+    storyIMGappend
 }

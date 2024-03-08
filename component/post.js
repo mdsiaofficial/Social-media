@@ -18,7 +18,7 @@ function createPost(idImg,idName,idLoc,mainPost,title){
                                 <p class="font-semibold text-s transition-all opacity-80 hover:opacity-90">${idName}</p>
                                 <p class="text-sm font-thin -mt-1 opacity-70">${idLoc}</p>
                             </div>
-                            <img class="h-6 btn" src="./icons/share.svg" alt="">
+                            <img id="sharePost" class="h-6 btn" src="./icons/share.svg" alt="">
                         </div>
                     </div>
 
@@ -26,13 +26,13 @@ function createPost(idImg,idName,idLoc,mainPost,title){
 
                     <div class="flex justify-between items-center">
                         <div class="flex gap-4 mt-4">
-                            <img class="h-6 btn" src="./icons/like.svg" alt="">
+                            <img id="like" class="h-6 btn" src="./icons/like.svg" alt="">
                             <img class="h-6 btn" src="./icons/chat.svg" alt="">
                         </div>
                         <img class="h-6 btn"  src="./icons/save.svg" alt="">
                     </div>
 
-                    <p class="opacity-90 text-md mt-3 hover:opacity-95"><span>0</span> likes</p>
+                    <p class="opacity-90 text-md mt-3 hover:opacity-95"><span id="countlike">0</span> likes</p>
                     
                     <div class="opacity-95 text-sm font-thin flex items-center">
                         <span class="line-clamp-1 hover:line-clamp-none transition-all duration-500">${title}</span>
