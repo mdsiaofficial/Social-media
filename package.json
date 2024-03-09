@@ -4,9 +4,9 @@
   "description": "",
   "main": "JavaScript.js",
   "scripts": {
-    "dev": "vite",
-    
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tailwindcss -i style.css -o ./src/output.css && vite build",
+    "watch": "tailwindcss -i style.css -o ./src/output.css --watch",
+    "dev": "vite"
   },
   "keywords": [],
   "author": "",

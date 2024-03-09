@@ -11,11 +11,10 @@ function navbar(Parent){
         <a href="#topside"><li class="nav-item activePage homeID"><img class="w-5 md:w-7" src="./icons/home.svg" alt=""><p>Home</p></li></a>
         <li class="nav-item peopleID md:hidden"><img class="w-5 md:w-7" src="./icons/people.svg" alt=""><p>People</p></li>
         <li class="nav-item createID"><img class="w-5 md:w-7" src="./icons/gallery-add.svg" alt=""><p>Create</p></li>
-        <li class="nav-item"><img class="w-5 md:w-7" src="./icons/chat.svg" alt=""><p>Message</p></li>
         <li class="nav-item saveID"><img class="w-5 md:w-7" src="./icons/save.svg" alt=""><p>Saved</p></li>
     </ul>
 
-    <div class="nav-item mt-56"><img class="w-5 md:w-7" src="./icons/logout.svg" alt=""><p>logout</p></div>
+    <div onclick="window.location.href = 'index.html'" class="nav-item logoutID  mt-72"><img class="w-5 md:w-7" src="./icons/logout.svg" alt=""><p>logout</p></div>
 </nav>
     `
     Parent.prepend(header);

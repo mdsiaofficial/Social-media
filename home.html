@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/output.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ephesis&family=Grenze+Gotisch:wght@100..900&family=Parisienne&display=swap" rel="stylesheet">
+</head>
+<body class="bg-black text-white overflow-hidden">
+
+    <section id="root" class="flex justify-between w-screen overflow-y-auto">
+        
+    <!-- nav div -->
+    <main id="main" class="main_w h-screen px-3 flex gap-3 justify-between overflow-y-auto scroll-smooth">
+        <section id="mainBody" class="w-full md:block md:w-[480px] py-6 md:py-8 relative">
+            <div id="mainPost" class="w-full md:w-[480px]"></div>
+            <div id="savePostArea" class="bg-black absolute hidden inset-0 w-full h-screen">
+                <div class="flex items-center justify-center my-7">
+                    <h1 class="font-semibold text-2xl">Saved post</h1>
+                </div>
+                <section class="savePostAppend"></section>
+            </div>
+        </section>
+
+        
+
+
+    </main>
+
+
+
+
+
+
+    <!-- show profile start -->
+
+    <section id="fullProfile" class="h-screen w-screen absolute bg-opacity-5 backdrop-blur-sm justify-center
+     items-center opacity-0 hidden transition-all duration-200"></section>
+
+    <!-- show profile end -->
+
+
+
+
+    <!-- show sugg start -->
+
+    <section id="fullSugg" class="h-screen w-screen absolute bg-opacity-5 backdrop-blur-sm justify-center
+     items-center hidden opacity-0 transition-all duration-200"></section>
+    
+    <!-- show sugg end -->
+
+
+
+    <!-- create post from start -->
+
+    <section id="createPostFull" class="h-screen w-screen absolute bg-opacity-5 backdrop-blur-sm justify-center
+    items-center hidden opacity-0 transition-all duration-200"></section>
+
+
+    <!-- create post from end -->
+    
+
+
+
+
+ 
+
+
+    
+    </section>
+
+
+
+
+
+    
+
+    <script type="module" src="App.js"></script>
+
+</body>
+</html>

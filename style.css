@@ -79,3 +79,25 @@
 
 
 
+
+.vr::before{
+    content: "";
+    height: 1px;
+    width: 40%;
+    background-color: white;
+    display: block;
+    position: absolute;
+    top: 14px;
+
+}
+
+.vr::after{
+    content: "";
+    height: 1px;
+    width: 40%;
+    background-color: white;
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 9px;
+}

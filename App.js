@@ -32,12 +32,16 @@ const SavePost = document.querySelector("#SavePost");
 
 
 
+let userAllInfo = localStorage.getItem("proInfo")
+if (userAllInfo){
+    let DD = JSON.parse(userAllInfo)
+    profileData.id = DD.id
+    profileData.name = DD.name
+    profileData.img = DD.img
+}
 
 
 
-
-localStorage.setItem("profileDetails", JSON.stringify(profileData));
-let profileLoc = JSON.parse(localStorage.getItem("profileDetails"));
 
 function profileUpdate() {
     const newImg = document.querySelector(".newImg");
@@ -48,6 +52,8 @@ function profileUpdate() {
             let IMG = URL.createObjectURL(input.files[0]);
             newImg.src = IMG;
             document.querySelector(".createPe").src = IMG
+            profileData.img = IMG
+            storyIMGappend(IMG)
             
         }
     });
@@ -140,7 +146,7 @@ createSlider()
 storySore.forEach((item)=>{
     storyIMGappend(item)
 })
-createPeople(profileLoc.id, profileLoc.name, profileLoc.img);
+createPeople(profileData.id, profileData.name, profileData.img);
 suggData.forEach((data,index)=>{
     addSugPeople(suggData[index].id, suggData[index].img)
 })
@@ -186,8 +192,18 @@ function attachLikeEventListeners(like, countlike) {
 function attachSAVEDEventListeners(saved) {
     saved.forEach((item, index) => {
         item.addEventListener("click", () => {  
-            item.setAttribute("src", "./icons/saved.svg");
-            savePostAppend.prepend(item.parentNode.parentNode)
+
+            if (item.getAttribute("src")==="./icons/save.svg"){
+                item.setAttribute("src", "./icons/saved.svg");
+            setTimeout(()=>{
+                savePostAppend.prepend(item.parentNode.parentNode)
+            },300)
+
+            }
+            else if (item.getAttribute("src")==="./icons/saved.svg"){
+                mainPost.prepend(item.parentNode.parentNode)
+            }
+            
           
         });
     });
@@ -446,12 +462,11 @@ function profileHide(Parent) {
 
 navMenu.forEach((item)=>{
     item.addEventListener("click",()=>{
-        if (!item.classList.contains("createID")){
             navMenu.forEach(item =>{
                 item.classList.remove("activePage")
             })
     
-        }
+        
 
 
         if(item.classList.contains("homeID")){
@@ -468,6 +483,7 @@ navMenu.forEach((item)=>{
         }
 
         else if (item.classList.contains("createID")){
+            document.querySelector(".homeID").classList.add("activePage")
             createID.addEventListener("click", function (){profileShow(createPostFull)});
             peopleRemove()
             saveRemove()
@@ -484,10 +500,16 @@ navMenu.forEach((item)=>{
             
         }
 
+        
 
         
     })
 })
+// Assuming item refers to the element with the class "logoutID"
+
+
+
+
 
 
 

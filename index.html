@@ -4,81 +4,210 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./src/output.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ephesis&family=Grenze+Gotisch:wght@100..900&family=Parisienne&display=swap" rel="stylesheet">
 </head>
 <body class="bg-black text-white overflow-hidden">
 
-    <section id="root" class="flex justify-between w-screen overflow-y-auto">
-        
-    <!-- nav div -->
-    <main id="main" class="main_w h-screen px-3 flex gap-3 justify-between overflow-y-auto scroll-smooth">
-        <section id="mainBody" class="w-full md:block md:w-[480px] py-6 md:py-8 relative">
-            <div id="mainPost" class="w-full md:w-[480px]"></div>
-            <div id="savePostArea" class="bg-black absolute hidden inset-0 w-full h-screen">
-                <div class="flex items-center justify-center my-7">
-                    <h1 class="font-semibold text-2xl">Saved post</h1>
+    <section class="h-screen w-screen grid md:grid-cols-4 lg:grid-cols-2">
+
+        <main class="h-screen w-full flex items-center justify-center md:col-span-2 lg:col-span-1">
+
+            <section class=" w-[80%] h-[70%] flex flex-col items-center justify-center">
+                <div class="flex gap-3 items-center justify-center mb-12">
+                    <img src="./icons/favicon.ico" alt="">
+                    <p class="icon_font">Friend Zone</p>
                 </div>
-                <section class="savePostAppend"></section>
-            </div>
+
+                <form class="w-[96%] md:w-[90%] lg:w-[70%]">
+                    <div class="flex flex-col px-5 gap-y-3 text-black">
+                        <input id="userInputName" class="px-3 py-2  rounded" type="text" placeholder="Enter the username">
+                        <input id="passwordInput" class="px-3 py-2 rounded" type="password" placeholder="Enter the password">
+
+                        <div>
+
+                            <input id="userLog" class="px-3 w-full py-2 rounded bg-[#6a44ba] text-white mt-4
+                        transition-all duration-200 hover:bg-[#7150b7] hover:scale-95
+                        font-semibold" type="button" value="Log In">
+
+                        <div class="relative mx-1 opacity-80 my-1"><p class="text-white text-center vr">or</p></div>
+                    
+                    
+                        </div>
+
+                    </div>
+
+
+                    <div class="flex flex-col px-5 gap-y-3 text-black">
+                        
+                       <a href="home.html" class="px-3 py-2 rounded bg-[#10752d] text-white mt-2
+                       transition-all duration-200 text-center hover:bg-[#148935] hover:scale-95 font-semibold">
+                        <input type="button" value="Demo Log In">
+                       </a>
+
+
+                         <p id="createAcc" class="text-center transition-all cursor-pointer  mt-5 text-[#9261ec] hover:text-[#754cc2] font-semibold ">Create account</p>
+                    </div>
+
+                </form>
+
+            </section>
+
+        </main>
+
+
+
+
+        <section class="h-screen w-full hidden md:flex items-center md:col-span-2 lg:col-span-1">
+            <img class="rounded-xl" src="./images/side-img.svg" alt="">
         </section>
 
+
+
+        <footer id="signuppp" class="absolute inset-0 transition-all duration-500 backdrop-blur mx-8 items-center justify-center hidden opacity-0">
+            <section class="w-fit md:w-[400px] relative h-fit bg-black shadow shadow-white px-4 py-2 rounded text-black flex flex-col">
         
+                <p onclick="hidesignup()" class="text-white absolute text-2xl right-5 transition-all btn text-center w-10 h-10 hover:bg-[#3a3535] rounded-full">x</p>
+        
+                <h1 class="text-white mt-10 text-center text-2xl font-bold">Sign up</h1>
+        
+                <input id="firstName" class="px-3 py-2 rounded mt-14 bg-white" type="text" placeholder="Enter your first name">
+                <input id="lastName" class="px-3 py-2 rounded mt-5 bg-white" type="text" placeholder="Enter your last name">
+                <input id="newId" class="px-3 py-2 rounded mt-5 bg-white" type="text" placeholder="Enter new id name">
+                <input id="newPassword" class="px-3 py-2 rounded mt-5 bg-white" type="password" placeholder="Enter new password">
 
-
-    </main>
-
-
-
-
-
-
-    <!-- show profile start -->
-
-    <section id="fullProfile" class="h-screen w-screen absolute bg-opacity-5 backdrop-blur-sm justify-center
-     items-center opacity-0 hidden transition-all duration-200"></section>
-
-    <!-- show profile end -->
-
+                <button id="newIDcreate" class="px-3 py-2 text-lg rounded my-5 mt-8 bg-[#554eaa] btn hover:bg-[#554f83] text-white font-semibold">Create</button>
+        
+            </section>
+        </footer>
 
 
 
-    <!-- show sugg start -->
+        
+        <script>
+            const newIDcreate = document.querySelector("#newIDcreate");
+            const signuppp = document.querySelector("#signuppp");
+            const createAcc = document.querySelector("#createAcc")
+            const userLog = document.querySelector("#userLog")
 
-    <section id="fullSugg" class="h-screen w-screen absolute bg-opacity-5 backdrop-blur-sm justify-center
-     items-center hidden opacity-0 transition-all duration-200"></section>
+
+            newIDcreate.addEventListener("click", createFZid);
+
+
+
+            userLog.addEventListener("click",()=>{
+                const userInputName = document.querySelector("#userInputName").value
+                const passwordInput = document.querySelector("#passwordInput").value
+
+                const logInfo = localStorage.getItem("logData");
+                if (logInfo) {
+                     const logInInfo = JSON.parse(logInfo)
+                     if (logInInfo.id!=userInputName){
+                        window.alert("this id is not exist")
+                     }
+                     else if(logInInfo.password!=passwordInput){
+                        window.alert("wrong password")
+                     }
+                     else if(logInInfo.id==userInputName && logInInfo.password==passwordInput){
+                        window.location.href = "home.html";
+                     }
+                     
+                }else{
+                    window.alert("first create a new account or visit demo account")
+                }
+
+
+
+
+                document.querySelector("#userInputName").value = ""
+                document.querySelector("#passwordInput").value = ""
+
+            })
+
+
+
+
+
+
+
+
+
+
+
+
+
+            createAcc.addEventListener("click",()=>{
+                signuppp.classList.remove("hidden")
+                signuppp.classList.add("flex")
+                setTimeout(()=>{
+                    signuppp.classList.add("opacity-100")
+                },200)
+
+            })
+
+
+
+
+            
+
+
+
+           function hidesignup(){
+                signuppp.classList.remove("opacity-100")
+                setTimeout(()=>{
+                    signuppp.classList.remove("flex")
+                    signuppp.classList.add("hidden")
+                },200)
+           }
+
+
+
+
+
+            function createFZid (){
+                const firstName = document.querySelector("#firstName").value.trim();
+                const lastName = document.querySelector("#lastName").value.trim();
+                const newId = document.querySelector("#newId").value
+                const newPassword = document.querySelector("#newPassword").value.trim();
+                let x = firstName + " " + lastName
+                
+
+               
+
+                const  loginINFO = {
+                    id: newId,
+                    password: newPassword
+                }
+
+                localStorage.setItem("logData",JSON.stringify(loginINFO))
+
+
+                const profileData = {
+                    id : newId,
+                    name: x,
+                    img : "./icons/profile-placeholder.svg"
+                }
+
+                localStorage.setItem("proInfo",JSON.stringify(profileData))
+
+
+                 document.querySelector("#firstName").value = ""
+                 document.querySelector("#lastName").value="";
+                 document.querySelector("#newId").value = ""
+                 document.querySelector("#newPassword").value="";
+
+
+                 hidesignup()
+            }
+        </script>
+
+
+
+          
+
     
-    <!-- show sugg end -->
-
-
-
-    <!-- create post from start -->
-
-    <section id="createPostFull" class="h-screen w-screen absolute bg-opacity-5 backdrop-blur-sm justify-center
-    items-center hidden opacity-0 transition-all duration-200"></section>
-
-
-    <!-- create post from end -->
-    
-
-
-
-
- 
-
-
-    
-    </section>
-
-
-
-
-
-    
-
-    <script type="module" src="App.js"></script>
 
 </body>
 </html>
