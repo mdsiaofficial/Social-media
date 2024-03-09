@@ -91,11 +91,11 @@ let postData = [
        caption: "Find the beauty in every moment"
     },
     {
-       img: "./sugg/rahul.png",
+       img: "./images/nipon.png",
        id: "rahulroynipon",
        loc: "Chirirbandar, Dinajpur",
-       postImg: "./sugg/rahul.png",
-       caption: "Puspa jukega heni sala"
+       postImg: "./images/nipon.png",
+       caption: "A great day"
     },
     
      {
