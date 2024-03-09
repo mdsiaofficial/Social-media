@@ -99,7 +99,7 @@ let postData = [
     },
     
      {
-        img: "/images/nipon.png",
+        img: "./images/nipon.png",
         id: "rahulroynipon",
         loc: "Dinajpur, Rangpur",
         postImg: "./sugg/project.png",
