@@ -46,6 +46,12 @@ if (userAllInfo){
 function profileUpdate() {
     const newImg = document.querySelector(".newImg");
     const input = document.querySelector("#input-file");
+
+    if (localStorage.getItem("proInfo")){
+        const fullDetails = JSON.parse(localStorage.getItem("proInfo"))
+        newImg.src = fullDetails.img
+        document.querySelector(".disUser").innerText = fullDetails.id
+    }
     
     input.addEventListener("change", () => {
         if (input.files.length > 0) {
@@ -552,3 +558,5 @@ function saveRemove(){
     savePostArea.classList.add("hidden")
     mainPost.classList.remove("hidden")
 }
+
+
