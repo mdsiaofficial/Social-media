@@ -53,7 +53,7 @@
 
 
 .slider-image{
-    @apply h-[200px] rounded-2xl w-[100px] hover:w-[50%] transition-all duration-500
+    @apply h-[200px] rounded-2xl w-[100px] hover:w-[50%] transition-all duration-700
 }
 
 

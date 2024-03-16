@@ -27,7 +27,7 @@ function storyIMGappend(path) {
     const Parent = document.querySelector("#sliderIMgParent");
 
     const IMG = document.createElement("img");
-    IMG.setAttribute("class", "slider-image");
+    IMG.setAttribute("class", "slider-image object-cover");
     IMG.src = path;
 
     Parent.prepend(IMG);
